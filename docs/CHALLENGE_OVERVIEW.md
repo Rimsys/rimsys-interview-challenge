@@ -20,18 +20,6 @@ You are working on a **Regulatory Document Tracker** application for Rimsys. The
 
 The application is half-implemented, with intentional gaps and issues that you need to fix.
 
-## What's Missing
-
-The following items are intentionally broken or incomplete:
-
-* `Product` model exists, but missing relationship to `Document`
-* `Document` model exists, but missing relationship and column
-* `ProductDocument` pivot model is missing completely
-* Migration for pivot table is missing
-* `document_type` enum field missing from `documents` table
-* Route missing for `GET /api/products/{product}/documents/download`
-* Bug in `DocumentController` (filter logic fails to exclude inactive docs)
-
 ## Your Task
 
 Your task is to make the application work by:
