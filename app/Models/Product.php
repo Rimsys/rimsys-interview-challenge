@@ -31,6 +31,4 @@ class Product extends Model
     protected $casts = [
         'is_active' => 'boolean',
     ];
-
-    // Intentionally missing relationship to Document
 }

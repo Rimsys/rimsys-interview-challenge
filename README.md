@@ -58,15 +58,6 @@ Or using Composer:
 composer test
 ```
 
-## Interview Challenge Tasks
-
-1. Get all existing tests to pass
-2. Add the missing ProductDocument model
-3. Add necessary migrations or schema changes
-4. Implement the missing relationships
-5. Fix the bug in DocumentController
-6. Add the /api/products/{product}/documents/download endpoint
-
 ## Project Structure
 
 The project is a Regulatory Document Tracker that manages:

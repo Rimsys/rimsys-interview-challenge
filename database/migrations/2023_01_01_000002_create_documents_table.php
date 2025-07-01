@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('title');
             $table->string('file_path');
             $table->boolean('is_active')->default(true);
-            // Intentionally missing document_type enum field
             $table->timestamps();
         });
     }

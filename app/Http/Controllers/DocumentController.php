@@ -16,7 +16,6 @@ class DocumentController extends Controller
      */
     public function index(): JsonResponse
     {
-        // Intentional bug: This doesn't exclude inactive documents
         $documents = Document::all();
 
         return response()->json($documents);
@@ -27,7 +26,6 @@ class DocumentController extends Controller
      */
     public function forProduct(Product $product): JsonResponse
     {
-        // Intentional bug: This doesn't exclude inactive documents
         $documents = $product->documents;
 
         return response()->json($documents);
@@ -42,7 +40,6 @@ class DocumentController extends Controller
             'title' => 'required|string|max:255',
             'file_path' => 'required|string|max:255',
             'is_active' => 'boolean',
-            // Intentionally missing document_type validation
         ]);
 
         $document = Document::create($validated);
@@ -67,7 +64,6 @@ class DocumentController extends Controller
             'title' => 'string|max:255',
             'file_path' => 'string|max:255',
             'is_active' => 'boolean',
-            // Intentionally missing document_type validation
         ]);
 
         $document->update($validated);
@@ -84,6 +80,4 @@ class DocumentController extends Controller
 
         return response()->json(null, 204);
     }
-
-    // Intentionally missing download method for GET /api/products/{product}/documents/download
 }

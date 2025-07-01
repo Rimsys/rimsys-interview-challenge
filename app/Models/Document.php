@@ -20,7 +20,6 @@ class Document extends Model
         'title',
         'file_path',
         'is_active',
-        // Intentionally missing document_type column
     ];
 
     /**
@@ -30,8 +29,5 @@ class Document extends Model
      */
     protected $casts = [
         'is_active' => 'boolean',
-        // Intentionally missing document_type cast
     ];
-
-    // Intentionally missing relationship to Product
 }
