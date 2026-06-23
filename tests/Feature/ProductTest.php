@@ -24,23 +24,41 @@ test('can retrieve a product', function () {
         ]);
 });
 
-test('can retrieve products with active documents only', function () {
+test('can retrieve active documents for a product', function () {
     $product = Product::factory()->create();
 
-    // This test will fail because the relationship is missing
-    // and the filter logic in DocumentController has a bug
     $activeDocument = Document::factory()->create(['is_active' => true]);
     $inactiveDocument = Document::factory()->create(['is_active' => false]);
 
-    // These lines will fail because the relationship is missing
     $product->documents()->attach($activeDocument);
     $product->documents()->attach($inactiveDocument);
 
     $response = $this->getJson("/api/products/{$product->id}/documents");
 
-    // This will fail because the DocumentController doesn't filter inactive documents
     $response->assertStatus(200)
         ->assertJsonCount(1)
         ->assertJsonFragment(['id' => $activeDocument->id])
         ->assertJsonMissing(['id' => $inactiveDocument->id]);
+});
+
+test('can filter product documents by document type', function () {
+    $product = Product::factory()->create();
+
+    $regulatoryDocument = Document::factory()->create([
+        'document_type' => 'REGULATORY',
+        'is_active' => true,
+    ]);
+    $technicalDocument = Document::factory()->create([
+        'document_type' => 'TECHNICAL',
+        'is_active' => true,
+    ]);
+
+    $product->documents()->attach([$regulatoryDocument->id, $technicalDocument->id]);
+
+    $response = $this->getJson("/api/products/{$product->id}/documents?document_type=REGULATORY");
+
+    $response->assertStatus(200)
+        ->assertJsonCount(1)
+        ->assertJsonFragment(['id' => $regulatoryDocument->id])
+        ->assertJsonMissing(['id' => $technicalDocument->id]);
 });

@@ -1,6 +1,8 @@
-# Rimsys Interview Challenge
+# Rimsys Laravel Interview Challenge
 
 This is a Laravel 13-based coding challenge used in technical interviews for Senior Full Stack Engineer candidates at Rimsys.
+
+The interview is a 60-minute live backend exercise. You may use Claude Code, Codex, or another AI coding tool during the interview. We are interested in how you direct the tool, verify its work, reject bad suggestions, and make senior engineering tradeoffs under time pressure.
 
 ## Setup Instructions
 
@@ -46,6 +48,15 @@ This is a Laravel 13-based coding challenge used in technical interviews for Sen
    php artisan serve
    ```
 
+## Challenge Rules
+
+- Do not modify or delete the provided tests.
+- You may add your own tests.
+- Visible tests are examples, not exhaustive acceptance criteria.
+- Think aloud at natural checkpoints, especially when using AI-generated suggestions.
+- Be prepared to explain what you completed, what remains, and what you would harden before production.
+- Frontend work is out of scope unless your interviewer explicitly says otherwise.
+
 ## Running Tests
 
 Run the tests using Pest:
@@ -58,11 +69,19 @@ Or using Composer:
 composer test
 ```
 
-## Project Structure
+## Project Scope
 
 The project is a Regulatory Document Tracker that manages:
 - **Products** — medical devices
 - **Documents** — attached compliance and regulatory files
-- **Document Types** — enum for types (REGULATORY, TECHNICAL, etc.)
+- **Document Types** — REGULATORY, TECHNICAL, QUALITY, and CLINICAL
 
-Some models and routes are defined. Others are missing or incomplete. A handful of tests are passing. Several are failing intentionally.
+The application is intentionally incomplete. Your task is to make the backend behavior work in an idiomatic Laravel way.
+
+Expected behavior includes:
+- `GET /api/products/{product}` returns product JSON or `404`.
+- `GET /api/products/{product}/documents` returns only active documents attached to that product.
+- `GET /api/products/{product}/documents?document_type=REGULATORY` filters active attached documents by type.
+- `GET /api/products/{product}/documents/download` returns a zip response for a product's active documents.
+
+Use normal Laravel conventions for migrations, Eloquent relationships, factories, query constraints, storage, and HTTP responses. Supported document types are `REGULATORY`, `TECHNICAL`, `QUALITY`, and `CLINICAL`.

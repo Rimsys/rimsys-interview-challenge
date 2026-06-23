@@ -22,20 +22,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // Create products
-        $products = Product::factory()->count(5)->create();
+        Product::factory()->count(5)->create();
 
         // Create documents
-        $documents = Document::factory()->count(10)->create();
-
-        // Note: The following code will fail because the relationship is missing
-        // This is intentional as per the requirements
-        /*
-        // Attach documents to products
-        foreach ($products as $product) {
-            $product->documents()->attach(
-                $documents->random(rand(1, 3))->pluck('id')->toArray()
-            );
-        }
-        */
+        Document::factory()->count(10)->create();
     }
 }

@@ -6,7 +6,7 @@ use App\Models\Document;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Document>
+ * @extends Factory<Document>
  */
 class DocumentFactory extends Factory
 {
@@ -26,9 +26,8 @@ class DocumentFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(),
-            'file_path' => 'documents/' . $this->faker->uuid() . '.pdf',
+            'file_path' => 'documents/'.$this->faker->uuid().'.pdf',
             'is_active' => true,
-            // Intentionally missing document_type
         ];
     }
 

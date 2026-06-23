@@ -19,10 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Document routes
 Route::apiResource('documents', DocumentController::class);
 
-// Product document routes
 Route::get('/products/{product}/documents', [DocumentController::class, 'forProduct']);
-
-// Intentionally missing route for GET /api/products/{product}/documents/download
