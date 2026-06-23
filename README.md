@@ -1,6 +1,6 @@
 # Rimsys Interview Challenge
 
-This is a Laravel 12-based coding challenge used in technical interviews for Senior Full Stack Engineer candidates at Rimsys.
+This is a Laravel 13-based coding challenge used in technical interviews for Senior Full Stack Engineer candidates at Rimsys.
 
 ## Setup Instructions
 
